@@ -1,0 +1,1043 @@
+<title>Florida Road Trip 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:#F4F8F6;
+    --surface:#FFFFFF;
+    --surface-2:#EBF2EF;
+    --ink:#15302D;
+    --ink-soft:#4E6864;
+    --ink-faint:#8AA09B;
+    --line:#DAE6E2;
+    --teal:#0E7C86;
+    --teal-soft:#E4F2F1;
+    --coral:#D9503E;
+    --coral-soft:#FBE7E2;
+    --gold:#8C6118;
+    --gold-soft:#F6EBD6;
+    --danger:#C94444;
+    --danger-soft:#FBE6E4;
+    --cat-accommodation:#2A78D6;
+    --cat-food:#EB6834;
+    --cat-flights:#1BAF7A;
+    --cat-transport:#EDA100;
+    --cat-fun:#E87BA4;
+    --cat-shopping:#008300;
+    --cat-other:#4A3AA7;
+    --shadow:0 1px 2px rgba(21,48,45,.06), 0 6px 20px -10px rgba(21,48,45,.18);
+    --radius:14px;
+    font-family:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0E1917;
+      --surface:#16241F;
+      --surface-2:#1C2E29;
+      --ink:#EAF4F0;
+      --ink-soft:#A7C0B9;
+      --ink-faint:#6E8983;
+      --line:#28403A;
+      --teal:#3FC2BC;
+      --teal-soft:#183330;
+      --coral:#FF8E78;
+      --coral-soft:#3A2420;
+      --gold:#F2B65C;
+      --gold-soft:#332512;
+      --danger:#FF7B72;
+      --danger-soft:#3A2220;
+      --cat-accommodation:#3987E5;
+      --cat-food:#D95926;
+      --cat-flights:#199E70;
+      --cat-transport:#C98500;
+      --cat-fun:#D55181;
+      --cat-shopping:#008300;
+      --cat-other:#9085E9;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0E1917;
+    --surface:#16241F;
+    --surface-2:#1C2E29;
+    --ink:#EAF4F0;
+    --ink-soft:#A7C0B9;
+    --ink-faint:#6E8983;
+    --line:#28403A;
+    --teal:#3FC2BC;
+    --teal-soft:#183330;
+    --coral:#FF8E78;
+    --coral-soft:#3A2420;
+    --gold:#F2B65C;
+    --gold-soft:#332512;
+    --danger:#FF7B72;
+    --danger-soft:#3A2220;
+    --cat-accommodation:#3987E5;
+    --cat-food:#D95926;
+    --cat-flights:#199E70;
+    --cat-transport:#C98500;
+    --cat-fun:#D55181;
+    --cat-shopping:#008300;
+    --cat-other:#9085E9;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    margin:0;
+    padding-inline:16px;
+    padding-block:20px 48px;
+    font-size:15px;
+    line-height:1.45;
+  }
+  .app{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:22px;}
+
+  h1,h2{font-family:'Fraunces',Georgia,serif;text-wrap:balance;margin:0;}
+  .brand{font-size:30px;font-weight:700;letter-spacing:-.01em;}
+  .tagline{margin:2px 0 0;color:var(--ink-soft);font-size:13.5px;}
+
+  .crew{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+  .crew-chip{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 12px 6px 6px;}
+  .avatar{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;flex:none;}
+  .crew-me .avatar{background:var(--teal);}
+  .crew-mom .avatar{background:var(--coral);}
+  .crew-chip input{border:none;background:transparent;color:var(--ink);font:inherit;font-weight:600;font-size:13.5px;width:6.5em;padding:2px 0;}
+  .crew-chip input:focus{outline:none;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
+
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .stat-tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .stat-label{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);font-weight:600;}
+  .stat-value{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .stat-sub{font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;overflow-wrap:anywhere;}
+  .stat-balance{background:var(--gold-soft);border-color:color-mix(in srgb, var(--gold) 35%, var(--line));}
+  .stat-balance .stat-value{color:var(--gold);}
+
+  form.entry-form{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;}
+  .entry-form input[type=text],
+  .entry-form input[type=number],
+  .entry-form input[type=date],
+  .entry-form select{
+    width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 11px;color:var(--ink);font:inherit;font-size:14.5px;
+  }
+  .entry-form input:focus,.entry-form select:focus{outline:2px solid var(--teal);outline-offset:1px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .field-error{color:var(--danger);font-size:12.5px;margin:-4px 0 0;display:none;}
+  .field-error.show{display:block;}
+
+  .segmented{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .seg-label{font-size:12.5px;color:var(--ink-faint);font-weight:600;width:64px;flex:none;}
+  .seg-btn{border:1px solid var(--line);background:var(--surface-2);color:var(--ink-soft);border-radius:999px;padding:6px 14px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;}
+  .seg-btn:hover{border-color:var(--ink-faint);}
+  #payerGroup .seg-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+  #forGroup .seg-btn.active{background:var(--coral);border-color:var(--coral);color:#fff;}
+
+  .form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:4px;}
+  .btn-primary{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:11px 18px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;}
+  .btn-primary:hover{filter:brightness(1.06);}
+  .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink-soft);border-radius:10px;padding:11px 16px;font:inherit;font-weight:600;font-size:14px;cursor:pointer;}
+
+  .list-section{display:flex;flex-direction:column;gap:10px;}
+  .list-head{display:flex;align-items:baseline;justify-content:space-between;}
+  .list-head h2{font-size:18px;font-weight:600;}
+  .count{font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
+  .day-group{display:flex;flex-direction:column;gap:8px;}
+  .day-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-faint);margin-top:6px;}
+  .entry-row{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;}
+  .cat-dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .entry-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+  .entry-text{font-weight:600;font-size:14.5px;overflow-wrap:anywhere;}
+  .entry-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-faint);}
+  .mini-avatar{width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex:none;}
+  .mini-avatar.me{background:var(--teal);}
+  .mini-avatar.mom{background:var(--coral);}
+  .meta-arrow{color:var(--ink-faint);}
+  .meta-both{display:flex;align-items:center;gap:2px;}
+  .tag-personal{background:var(--surface-2);border-radius:6px;padding:1px 6px;font-weight:600;}
+  .entry-amounts{display:flex;flex-direction:column;align-items:flex-end;gap:1px;flex:none;}
+  .amt-eur{font-weight:700;font-size:14px;font-variant-numeric:tabular-nums;}
+  .amt-usd{font-size:12px;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
+  .entry-actions{display:flex;gap:2px;flex:none;}
+  .icon-btn{border:none;background:transparent;color:var(--ink-faint);font-size:14px;width:26px;height:26px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .icon-btn:hover{background:var(--surface-2);color:var(--ink);}
+  .icon-btn.delete-btn:hover{background:var(--danger-soft);color:var(--danger);}
+  .empty{display:none;color:var(--ink-faint);font-size:13.5px;background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:20px;text-align:center;}
+  .empty.show{display:block;}
+  .list{display:flex;flex-direction:column;gap:14px;}
+
+  .report-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px;}
+  .report-head{display:flex;flex-direction:column;gap:10px;}
+  .report-head h2{font-size:15.5px;font-weight:600;}
+  .tab-row{display:flex;gap:6px;background:var(--surface-2);border-radius:10px;padding:3px;}
+  .tab-btn{flex:1;border:none;background:transparent;color:var(--ink-soft);font:inherit;font-size:13px;font-weight:600;padding:8px 10px;border-radius:8px;cursor:pointer;}
+  .tab-btn.active{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);}
+  .tab-panel[hidden]{display:none;}
+  .tab-panel{display:flex;flex-direction:column;gap:16px;}
+  .report-block{display:flex;flex-direction:column;gap:10px;}
+  .report-block h3{margin:0;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);font-family:'Public Sans',sans-serif;}
+  .quick-stats .stat-tile{background:var(--surface-2);box-shadow:none;}
+  .cat-list{display:flex;flex-direction:column;gap:10px;}
+  .cat-row{display:flex;flex-direction:column;gap:4px;}
+  .cat-row-top{display:flex;align-items:center;gap:8px;font-size:13px;}
+  .cat-row-top .cat-dot{width:8px;height:8px;}
+  .cat-name{font-weight:600;flex:1;}
+  .cat-count{color:var(--ink-faint);font-size:11.5px;}
+  .cat-amt{font-variant-numeric:tabular-nums;font-weight:600;}
+  .cat-bar-track{height:5px;border-radius:99px;background:var(--surface-2);overflow:hidden;}
+  .cat-bar-fill{height:100%;border-radius:99px;}
+
+  .payer-rows{display:flex;flex-direction:column;gap:10px;}
+  .payer-row{display:flex;align-items:center;gap:10px;}
+  .payer-row .name{font-weight:600;font-size:13.5px;flex:1;}
+  .payer-row .amounts{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+  .payer-row .amounts .u{font-size:11.5px;color:var(--ink-faint);}
+
+  .day-chart-wrap{overflow-x:auto;padding-bottom:2px;}
+  .day-chart{display:flex;align-items:flex-end;gap:10px;height:150px;min-width:min-content;padding:22px 4px 0;position:relative;}
+  .day-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:30px;position:relative;}
+  .day-bar-btn{appearance:none;border:none;background:var(--gold);width:20px;min-height:3px;border-radius:4px 4px 0 0;cursor:pointer;padding:0;position:relative;}
+  .day-bar-btn:hover,.day-bar-btn:focus-visible{filter:brightness(1.12);outline:none;}
+  .day-value-label{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;color:var(--gold);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .day-bar-label{margin-top:6px;font-size:10.5px;color:var(--ink-faint);white-space:nowrap;}
+  .day-tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);border-radius:8px;padding:7px 10px;font-size:11.5px;line-height:1.5;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .1s;z-index:2;box-shadow:var(--shadow);}
+  .day-tooltip strong{font-variant-numeric:tabular-nums;}
+  .day-col:hover .day-tooltip,.day-col:focus-within .day-tooltip{opacity:1;}
+  .day-table{display:flex;flex-direction:column;gap:1px;border-radius:10px;overflow:hidden;border:1px solid var(--line);}
+  .day-table-row{display:flex;align-items:center;gap:10px;background:var(--surface);padding:9px 12px;font-size:12.5px;}
+  .day-table-row .dtr-date{flex:1;font-weight:600;}
+  .day-table-row .dtr-count{color:var(--ink-faint);font-size:11px;}
+  .day-table-row .dtr-amounts{display:flex;flex-direction:column;align-items:flex-end;gap:1px;flex:none;}
+  .day-table-row .dtr-amounts .u{font-size:11px;color:var(--ink-faint);}
+  .day-table-row .dtr-amounts .e{font-weight:700;font-variant-numeric:tabular-nums;}
+
+  .foot{text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;padding-top:4px;}
+  .foot p{margin:0;font-size:12px;color:var(--ink-faint);}
+  .btn-text-danger{background:none;border:none;color:var(--danger);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:4px;}
+
+  .toast{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));max-width:528px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow);font-size:13.5px;}
+  .toast button{background:none;border:none;color:var(--teal-soft);font:inherit;font-weight:700;cursor:pointer;}
+  :root[data-theme="dark"] .toast, @media (prefers-color-scheme: dark){ }
+
+  @media (max-width:420px){
+    .row2{grid-template-columns:1fr 1fr;}
+    .stat-value{font-size:19px;}
+    .brand{font-size:26px;}
+  }
+</style>
+
+<div class="app">
+  <header class="top">
+    <h1 class="brand">Florida Road Trip 2026</h1>
+    <p class="tagline" id="tagline">Zatiaľ žiadne výdavky</p>
+    <div class="crew">
+      <div class="crew-chip crew-me">
+        <span class="avatar" id="avatarMe">J</span>
+        <input id="nameMe" type="text" value="Ja" maxlength="16" aria-label="Tvoje meno">
+      </div>
+      <div class="crew-chip crew-mom">
+        <span class="avatar" id="avatarMom">M</span>
+        <input id="nameMom" type="text" value="Mama" maxlength="16" aria-label="Meno spolucestujúcej osoby">
+      </div>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat-tile">
+      <span class="stat-label">Spolu minuté</span>
+      <span class="stat-value" id="totalEur">0,00 €</span>
+      <span class="stat-sub" id="totalUsd">0,00 $</span>
+    </div>
+    <div class="stat-tile stat-balance" id="balanceTile">
+      <span class="stat-label">Vyrovnanie</span>
+      <span class="stat-value" id="balanceMain">Vyrovnané ✓</span>
+      <span class="stat-sub" id="balanceSub">EUR aj USD sedia</span>
+    </div>
+  </section>
+
+  <form class="entry-form" id="entryForm" novalidate>
+    <input type="text" id="fText" placeholder="napr. Večera v South Beach" required autocomplete="off">
+    <div class="row2">
+      <input type="number" id="fEur" placeholder="Suma v € " step="0.01" min="0" inputmode="decimal">
+      <input type="number" id="fUsd" placeholder="Suma v $" step="0.01" min="0" inputmode="decimal">
+    </div>
+    <p class="field-error" id="amountError">Zadaj sumu aspoň v jednej mene.</p>
+    <div class="row2">
+      <input type="date" id="fDate">
+      <select id="fCategory" aria-label="Kategória"></select>
+    </div>
+    <div class="segmented" id="payerGroup">
+      <span class="seg-label">Platil(a)</span>
+      <button type="button" class="seg-btn active" data-value="me">Ja</button>
+      <button type="button" class="seg-btn" data-value="mom">Mama</button>
+    </div>
+    <div class="segmented" id="forGroup">
+      <span class="seg-label">Za koho</span>
+      <button type="button" class="seg-btn" data-value="me">Ja</button>
+      <button type="button" class="seg-btn" data-value="mom">Mama</button>
+      <button type="button" class="seg-btn active" data-value="both">Obaja</button>
+    </div>
+    <div class="form-actions">
+      <button type="button" id="cancelEdit" class="btn-ghost" hidden>Zrušiť úpravu</button>
+      <button type="submit" class="btn-primary" id="submitBtn">Pridať výdavok</button>
+    </div>
+  </form>
+
+  <section class="list-section">
+    <div class="list-head">
+      <h2>Výdavky</h2>
+      <span class="count" id="countLabel">0 položiek</span>
+    </div>
+    <div id="list" class="list"></div>
+    <p class="empty" id="emptyState">Zatiaľ žiadne výdavky — pridaj prvý vyššie.</p>
+  </section>
+
+  <section class="report-card">
+    <div class="report-head">
+      <h2>Report</h2>
+      <div class="tab-row" role="tablist" aria-label="Zobrazenie reportu">
+        <button type="button" class="tab-btn active" id="tabTotalBtn" role="tab" aria-selected="true" aria-controls="panelTotal">Za celý čas</button>
+        <button type="button" class="tab-btn" id="tabDailyBtn" role="tab" aria-selected="false" aria-controls="panelDaily">Po dňoch</button>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panelTotal" role="tabpanel">
+      <div class="stats quick-stats">
+        <div class="stat-tile">
+          <span class="stat-label">Priemer / deň</span>
+          <span class="stat-value" id="avgPerDay">0,00 €</span>
+          <span class="stat-sub" id="avgPerDaySub">&nbsp;</span>
+        </div>
+        <div class="stat-tile">
+          <span class="stat-label">Najdrahší deň</span>
+          <span class="stat-value" id="maxDayValue">—</span>
+          <span class="stat-sub" id="maxDayLabel">Zatiaľ žiadne dáta</span>
+        </div>
+      </div>
+
+      <div class="report-block">
+        <h3>Podľa kategórie</h3>
+        <div id="categoryBreakdown" class="cat-list"></div>
+      </div>
+
+      <div class="report-block">
+        <h3>Kto koľko zaplatil</h3>
+        <div class="payer-rows" id="payerRows"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panelDaily" role="tabpanel" hidden>
+      <div class="day-chart-wrap" id="dayChartWrap">
+        <div class="day-chart" id="dayChart"></div>
+      </div>
+      <p class="empty" id="dailyEmpty">Zatiaľ žiadne výdavky na zobrazenie po dňoch.</p>
+      <div class="day-table" id="dayTable"></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Dáta sa ukladajú len v tomto prehliadači na tomto zariadení.</p>
+    <button type="button" id="resetBtn" class="btn-text-danger">Vymazať všetky dáta</button>
+  </footer>
+</div>
+
+<div class="toast" id="toast" hidden>
+  <span id="toastMsg"></span>
+  <button type="button" id="toastUndo">Späť</button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "florida-trip-expenses-v1";
+
+  var CATEGORIES = [
+    { key:"accommodation", label:"Ubytovanie", varName:"--cat-accommodation",
+      keywords:["hotel","hostel","airbnb","motel","resort","ubytovanie","izba","apartman","recepcia"] },
+    { key:"transport", label:"Doprava", varName:"--cat-transport",
+      keywords:["uber","lyft","taxi","bus","autobus","vlak","train","metro","parking","parkovanie","prenajom auta","rental car","rentalcar","benzin","gas","fuel","toll","mytne","auto","sofer"] },
+    { key:"food", label:"Jedlo a pitie", varName:"--cat-food",
+      keywords:["restauracia","restaurant","ranajky","obed","vecera","jedlo","kava","coffee","cafe","burger","pizza","grill","bar","snack","zmrzlina","ice cream","diner","food truck","supermarket","potraviny","grocery","brunch"] },
+    { key:"flights", label:"Letenky", varName:"--cat-flights",
+      keywords:["let","flight","letenka","airline","airport","letisko","batozina","baggage","check-in","checkin","boarding"] },
+    { key:"fun", label:"Zábava", varName:"--cat-fun",
+      keywords:["listok","ticket","museum","muzeum","park","disney","universal","zoo","aquarium","akvarium","show","zabava","tour","vylet","plaz","beach","surf","kayak","boat","cruise","golf","atrakcia"] },
+    { key:"shopping", label:"Nákupy", varName:"--cat-shopping",
+      keywords:["nakup","shopping","suvenir","obchod","mall","store","oblecenie","clothes","darcek","gift"] },
+    { key:"other", label:"Iné", varName:"--cat-other", keywords:[] }
+  ];
+  var CAT_BY_KEY = {};
+  CATEGORIES.forEach(function(c){ CAT_BY_KEY[c.key] = c; });
+
+  function catColor(key){
+    var c = CAT_BY_KEY[key] || CAT_BY_KEY.other;
+    return getComputedStyle(document.documentElement).getPropertyValue(c.varName).trim() || "#8AA09B";
+  }
+
+  function normalize(s){
+    return (s || "").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+  }
+
+  function guessCategory(text){
+    var norm = normalize(text);
+    if(!norm) return "other";
+    for(var i=0;i<CATEGORIES.length;i++){
+      var cat = CATEGORIES[i];
+      if(cat.key === "other") continue;
+      for(var j=0;j<cat.keywords.length;j++){
+        if(norm.indexOf(cat.keywords[j]) !== -1) return cat.key;
+      }
+    }
+    return "other";
+  }
+
+  // ---------- state ----------
+  var state = { names:{ me:"Ja", mom:"Mama" }, entries:[] };
+
+  function load(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        var parsed = JSON.parse(raw);
+        if(parsed && typeof parsed === "object"){
+          if(parsed.names) state.names = { me: parsed.names.me || "Ja", mom: parsed.names.mom || "Mama" };
+          if(Array.isArray(parsed.entries)) state.entries = parsed.entries;
+        }
+      }
+    }catch(e){ /* private mode / blocked storage: continue with defaults */ }
+  }
+  function save(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){ /* ignore */ }
+  }
+
+  function getName(key){ return (state.names[key] || (key === "me" ? "Ja" : "Mama")); }
+  function initials(name){ return (name || "?").trim().charAt(0).toUpperCase() || "?"; }
+
+  function todayStr(){
+    var d = new Date();
+    var off = d.getTimezoneOffset();
+    var local = new Date(d.getTime() - off*60000);
+    return local.toISOString().slice(0,10);
+  }
+  function parseLocalDate(str){
+    var parts = (str || "").split("-").map(Number);
+    return new Date(parts[0], (parts[1]||1)-1, parts[2]||1);
+  }
+
+  var fmtEurCache = new Intl.NumberFormat("sk-SK", { style:"currency", currency:"EUR" });
+  var fmtUsdCache = new Intl.NumberFormat("en-US", { style:"currency", currency:"USD" });
+  function fmtEUR(n){ return fmtEurCache.format(n || 0); }
+  function fmtUSD(n){ return fmtUsdCache.format(n || 0); }
+  var dayFmt = new Intl.DateTimeFormat("sk-SK", { weekday:"short", day:"numeric", month:"short" });
+  var dayFmtShort = new Intl.DateTimeFormat("sk-SK", { day:"numeric", month:"numeric" });
+
+  // ---------- elements ----------
+  var el = {
+    tagline: document.getElementById("tagline"),
+    nameMe: document.getElementById("nameMe"),
+    nameMom: document.getElementById("nameMom"),
+    avatarMe: document.getElementById("avatarMe"),
+    avatarMom: document.getElementById("avatarMom"),
+    totalEur: document.getElementById("totalEur"),
+    totalUsd: document.getElementById("totalUsd"),
+    balanceMain: document.getElementById("balanceMain"),
+    balanceSub: document.getElementById("balanceSub"),
+    form: document.getElementById("entryForm"),
+    fText: document.getElementById("fText"),
+    fEur: document.getElementById("fEur"),
+    fUsd: document.getElementById("fUsd"),
+    fDate: document.getElementById("fDate"),
+    fCategory: document.getElementById("fCategory"),
+    amountError: document.getElementById("amountError"),
+    payerGroup: document.getElementById("payerGroup"),
+    forGroup: document.getElementById("forGroup"),
+    submitBtn: document.getElementById("submitBtn"),
+    cancelEdit: document.getElementById("cancelEdit"),
+    list: document.getElementById("list"),
+    emptyState: document.getElementById("emptyState"),
+    countLabel: document.getElementById("countLabel"),
+    categoryBreakdown: document.getElementById("categoryBreakdown"),
+    payerRows: document.getElementById("payerRows"),
+    tabTotalBtn: document.getElementById("tabTotalBtn"),
+    tabDailyBtn: document.getElementById("tabDailyBtn"),
+    panelTotal: document.getElementById("panelTotal"),
+    panelDaily: document.getElementById("panelDaily"),
+    avgPerDay: document.getElementById("avgPerDay"),
+    avgPerDaySub: document.getElementById("avgPerDaySub"),
+    maxDayValue: document.getElementById("maxDayValue"),
+    maxDayLabel: document.getElementById("maxDayLabel"),
+    dayChart: document.getElementById("dayChart"),
+    dailyEmpty: document.getElementById("dailyEmpty"),
+    dayTable: document.getElementById("dayTable"),
+    resetBtn: document.getElementById("resetBtn"),
+    toast: document.getElementById("toast"),
+    toastMsg: document.getElementById("toastMsg"),
+    toastUndo: document.getElementById("toastUndo")
+  };
+
+  // populate category select
+  CATEGORIES.forEach(function(c){
+    var opt = document.createElement("option");
+    opt.value = c.key; opt.textContent = c.label;
+    el.fCategory.appendChild(opt);
+  });
+
+  var formState = { payer:"me", for:"both" };
+  var categoryTouched = false;
+  var editingId = null;
+  var lastDeleted = null;
+  var toastTimer = null;
+
+  function setSegmented(groupEl, value, stateKey){
+    var btns = groupEl.querySelectorAll(".seg-btn");
+    btns.forEach(function(b){ b.classList.toggle("active", b.dataset.value === value); });
+    formState[stateKey] = value;
+  }
+
+  el.payerGroup.addEventListener("click", function(e){
+    var btn = e.target.closest(".seg-btn");
+    if(!btn) return;
+    setSegmented(el.payerGroup, btn.dataset.value, "payer");
+  });
+  el.forGroup.addEventListener("click", function(e){
+    var btn = e.target.closest(".seg-btn");
+    if(!btn) return;
+    setSegmented(el.forGroup, btn.dataset.value, "for");
+  });
+
+  el.fText.addEventListener("input", function(){
+    if(categoryTouched) return;
+    el.fCategory.value = guessCategory(el.fText.value);
+  });
+  el.fCategory.addEventListener("change", function(){ categoryTouched = true; });
+
+  el.nameMe.addEventListener("input", function(){ state.names.me = el.nameMe.value; save(); renderAll(); });
+  el.nameMom.addEventListener("input", function(){ state.names.mom = el.nameMom.value; save(); renderAll(); });
+
+  function resetForm(){
+    el.fText.value = "";
+    el.fEur.value = "";
+    el.fUsd.value = "";
+    el.fDate.value = todayStr();
+    el.fCategory.value = "other";
+    categoryTouched = false;
+    el.amountError.classList.remove("show");
+  }
+
+  function enterEdit(entry){
+    editingId = entry.id;
+    el.fText.value = entry.text;
+    el.fEur.value = entry.eur == null ? "" : entry.eur;
+    el.fUsd.value = entry.usd == null ? "" : entry.usd;
+    el.fDate.value = entry.date;
+    el.fCategory.value = entry.category;
+    categoryTouched = true;
+    setSegmented(el.payerGroup, entry.payer, "payer");
+    setSegmented(el.forGroup, entry.for, "for");
+    el.submitBtn.textContent = "Uložiť zmeny";
+    el.cancelEdit.hidden = false;
+    el.form.scrollIntoView({ behavior:"smooth", block:"center" });
+    el.fText.focus();
+  }
+  function exitEdit(){
+    editingId = null;
+    el.submitBtn.textContent = "Pridať výdavok";
+    el.cancelEdit.hidden = true;
+  }
+  el.cancelEdit.addEventListener("click", function(){
+    exitEdit();
+    resetForm();
+  });
+
+  el.form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var text = el.fText.value.trim();
+    var eurRaw = el.fEur.value.trim();
+    var usdRaw = el.fUsd.value.trim();
+    var eur = eurRaw === "" ? null : parseFloat(eurRaw);
+    var usd = usdRaw === "" ? null : parseFloat(usdRaw);
+    if(eur != null && (isNaN(eur) || eur < 0)) eur = null;
+    if(usd != null && (isNaN(usd) || usd < 0)) usd = null;
+    if(!text) { el.fText.focus(); return; }
+    if(eur == null && usd == null){
+      el.amountError.classList.add("show");
+      el.fEur.focus();
+      return;
+    }
+    el.amountError.classList.remove("show");
+
+    var entry = {
+      id: editingId || (Date.now().toString(36) + Math.random().toString(36).slice(2,7)),
+      text: text,
+      eur: (eur != null && !isNaN(eur)) ? eur : null,
+      usd: (usd != null && !isNaN(usd)) ? usd : null,
+      date: el.fDate.value || todayStr(),
+      payer: formState.payer,
+      for: formState.for,
+      category: el.fCategory.value || "other"
+    };
+
+    if(editingId){
+      var idx = state.entries.findIndex(function(x){ return x.id === editingId; });
+      if(idx !== -1) state.entries[idx] = entry;
+      exitEdit();
+    } else {
+      state.entries.push(entry);
+    }
+    save();
+    var keepPayer = formState.payer, keepFor = formState.for;
+    resetForm();
+    setSegmented(el.payerGroup, keepPayer, "payer");
+    setSegmented(el.forGroup, keepFor, "for");
+    renderAll();
+  });
+
+  function showToast(msg, undoFn){
+    el.toastMsg.textContent = msg;
+    el.toast.hidden = false;
+    el.toastUndo.style.display = undoFn ? "" : "none";
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.toast.hidden = true; lastDeleted = null; }, 6000);
+    el.toastUndo.onclick = function(){
+      if(undoFn) undoFn();
+      el.toast.hidden = true;
+      clearTimeout(toastTimer);
+    };
+  }
+
+  function deleteEntry(id){
+    var idx = state.entries.findIndex(function(x){ return x.id === id; });
+    if(idx === -1) return;
+    var removed = state.entries[idx];
+    state.entries.splice(idx,1);
+    save();
+    renderAll();
+    lastDeleted = { entry:removed, index:idx };
+    showToast("Položka zmazaná", function(){
+      state.entries.splice(Math.min(idx, state.entries.length), 0, removed);
+      save();
+      renderAll();
+    });
+  }
+
+  function setReportTab(tab){
+    var isTotal = tab === "total";
+    el.tabTotalBtn.classList.toggle("active", isTotal);
+    el.tabDailyBtn.classList.toggle("active", !isTotal);
+    el.tabTotalBtn.setAttribute("aria-selected", isTotal ? "true" : "false");
+    el.tabDailyBtn.setAttribute("aria-selected", isTotal ? "false" : "true");
+    el.panelTotal.hidden = !isTotal;
+    el.panelDaily.hidden = isTotal;
+  }
+  el.tabTotalBtn.addEventListener("click", function(){ setReportTab("total"); });
+  el.tabDailyBtn.addEventListener("click", function(){ setReportTab("daily"); });
+
+  el.resetBtn.addEventListener("click", (function(){
+    var armed = false;
+    var original = el.resetBtn.textContent;
+    var timer = null;
+    return function(){
+      if(!armed){
+        armed = true;
+        el.resetBtn.textContent = "Naozaj vymazať? (klikni znova)";
+        timer = setTimeout(function(){ armed = false; el.resetBtn.textContent = original; }, 4000);
+        return;
+      }
+      clearTimeout(timer);
+      armed = false;
+      el.resetBtn.textContent = original;
+      state.entries = [];
+      save();
+      renderAll();
+      showToast("Všetky výdavky vymazané");
+    };
+  })());
+
+  // ---------- computations ----------
+  function contribution(entry, amt){
+    if(entry.for === "both"){
+      return entry.payer === "me" ? amt/2 : -amt/2;
+    } else if(entry.for === "me"){
+      return entry.payer === "mom" ? -amt : 0;
+    } else {
+      return entry.payer === "me" ? amt : 0;
+    }
+  }
+
+  function computeStats(){
+    var totalEur = 0, totalUsd = 0;
+    var paidEur = { me:0, mom:0 }, paidUsd = { me:0, mom:0 };
+    var netEur = 0, netUsd = 0;
+    state.entries.forEach(function(e){
+      if(typeof e.eur === "number" && !isNaN(e.eur)){
+        totalEur += e.eur;
+        paidEur[e.payer] += e.eur;
+        netEur += contribution(e, e.eur);
+      }
+      if(typeof e.usd === "number" && !isNaN(e.usd)){
+        totalUsd += e.usd;
+        paidUsd[e.payer] += e.usd;
+        netUsd += contribution(e, e.usd);
+      }
+    });
+    return { totalEur:totalEur, totalUsd:totalUsd, paidEur:paidEur, paidUsd:paidUsd, netEur:netEur, netUsd:netUsd };
+  }
+
+  // ---------- render ----------
+  function updateAvatarsUI(){
+    el.avatarMe.textContent = initials(el.nameMe.value);
+    el.avatarMom.textContent = initials(el.nameMom.value);
+  }
+
+  function updateTagline(){
+    var n = state.entries.length;
+    if(n === 0){ el.tagline.textContent = "Zatiaľ žiadne výdavky"; return; }
+    var dates = state.entries.map(function(e){ return e.date; }).sort();
+    var span = 1;
+    try{
+      var min = parseLocalDate(dates[0]), max = parseLocalDate(dates[dates.length-1]);
+      span = Math.round((max - min) / 86400000) + 1;
+    }catch(e){}
+    el.tagline.textContent = n + (n === 1 ? " položka" : (n < 5 ? " položky" : " položiek")) + " · " + span + (span === 1 ? " deň" : (span < 5 ? " dni" : " dní"));
+  }
+
+  function renderStats(stats){
+    el.totalEur.textContent = fmtEUR(stats.totalEur);
+    el.totalUsd.textContent = fmtUSD(stats.totalUsd);
+
+    var items = [];
+    if(Math.abs(stats.netEur) > 0.005) items.push({ net:stats.netEur, text:fmtEUR(Math.abs(stats.netEur)) });
+    if(Math.abs(stats.netUsd) > 0.005) items.push({ net:stats.netUsd, text:fmtUSD(Math.abs(stats.netUsd)) });
+
+    if(items.length === 0){
+      el.balanceMain.textContent = "Vyrovnané ✓";
+      el.balanceSub.textContent = "EUR aj USD sedia";
+      return;
+    }
+    items.forEach(function(it){
+      it.debtorIsMom = it.net > 0;
+      it.debtor = it.debtorIsMom ? getName("mom") : getName("me");
+      it.creditor = it.debtorIsMom ? getName("me") : getName("mom");
+    });
+    var primary = items[0];
+    el.balanceMain.textContent = primary.text;
+    var sub = primary.debtor + " → " + primary.creditor;
+    if(items[1]){
+      var second = items[1];
+      if(second.debtorIsMom === primary.debtorIsMom){
+        sub += " · " + second.text;
+      } else {
+        sub += " · " + second.debtor + " → " + second.creditor + ": " + second.text;
+      }
+    }
+    el.balanceSub.textContent = sub;
+  }
+
+  function metaHtml(entry){
+    var payerCls = entry.payer === "me" ? "me" : "mom";
+    var payerLetter = initials(getName(entry.payer));
+    var payerAvatar = '<span class="mini-avatar ' + payerCls + '" title="' + escapeHtml(getName(entry.payer)) + '">' + payerLetter + '</span>';
+
+    var rightHtml;
+    if(entry.for === "both"){
+      rightHtml = '<span class="meta-arrow">→</span><span class="meta-both">' +
+        '<span class="mini-avatar me" title="' + escapeHtml(getName("me")) + '">' + initials(getName("me")) + '</span>' +
+        '<span class="mini-avatar mom" title="' + escapeHtml(getName("mom")) + '">' + initials(getName("mom")) + '</span>' +
+        '</span>';
+    } else if(entry.for === entry.payer){
+      rightHtml = '<span class="tag-personal">osobné</span>';
+    } else {
+      var benCls = entry.for === "me" ? "me" : "mom";
+      rightHtml = '<span class="meta-arrow">→</span><span class="mini-avatar ' + benCls + '" title="' + escapeHtml(getName(entry.for)) + '">' + initials(getName(entry.for)) + '</span>';
+    }
+
+    var catLabel = (CAT_BY_KEY[entry.category] || CAT_BY_KEY.other).label;
+    return payerAvatar + rightHtml + '<span>· ' + escapeHtml(catLabel) + '</span>';
+  }
+
+  function escapeHtml(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  function renderList(){
+    var entries = state.entries.slice().map(function(e, idx){ return { e:e, idx:idx }; });
+    entries.sort(function(a,b){
+      if(a.e.date !== b.e.date) return a.e.date < b.e.date ? 1 : -1;
+      return b.idx - a.idx;
+    });
+
+    el.list.innerHTML = "";
+    el.emptyState.classList.toggle("show", entries.length === 0);
+    el.countLabel.textContent = entries.length + (entries.length === 1 ? " položka" : (entries.length < 5 ? " položky" : " položiek"));
+
+    var currentDate = null;
+    var groupWrap = null;
+    var dateFmt = new Intl.DateTimeFormat("sk-SK", { weekday:"short", day:"numeric", month:"short" });
+
+    entries.forEach(function(item){
+      var entry = item.e;
+      if(entry.date !== currentDate){
+        currentDate = entry.date;
+        var label = document.createElement("div");
+        label.className = "day-label";
+        try{ label.textContent = dateFmt.format(parseLocalDate(entry.date)); }
+        catch(e){ label.textContent = entry.date; }
+        el.list.appendChild(label);
+        groupWrap = document.createElement("div");
+        groupWrap.className = "day-group";
+        el.list.appendChild(groupWrap);
+      }
+
+      var row = document.createElement("div");
+      row.className = "entry-row";
+      row.dataset.id = entry.id;
+
+      var dot = document.createElement("span");
+      dot.className = "cat-dot";
+      dot.style.background = catColor(entry.category);
+
+      var main = document.createElement("div");
+      main.className = "entry-main";
+      var textEl = document.createElement("span");
+      textEl.className = "entry-text";
+      textEl.textContent = entry.text;
+      var metaEl = document.createElement("span");
+      metaEl.className = "entry-meta";
+      metaEl.innerHTML = metaHtml(entry);
+      main.appendChild(textEl);
+      main.appendChild(metaEl);
+
+      var amounts = document.createElement("div");
+      amounts.className = "entry-amounts";
+      if(entry.eur != null){
+        var ae = document.createElement("span"); ae.className = "amt-eur"; ae.textContent = fmtEUR(entry.eur);
+        amounts.appendChild(ae);
+      }
+      if(entry.usd != null){
+        var au = document.createElement("span"); au.className = "amt-usd"; au.textContent = fmtUSD(entry.usd);
+        amounts.appendChild(au);
+      }
+
+      var actions = document.createElement("div");
+      actions.className = "entry-actions";
+      var editBtn = document.createElement("button");
+      editBtn.type = "button"; editBtn.className = "icon-btn edit-btn"; editBtn.setAttribute("aria-label","Upraviť");
+      editBtn.textContent = "✎";
+      editBtn.addEventListener("click", function(){ enterEdit(entry); });
+      var delBtn = document.createElement("button");
+      delBtn.type = "button"; delBtn.className = "icon-btn delete-btn"; delBtn.setAttribute("aria-label","Zmazať");
+      delBtn.textContent = "✕";
+      delBtn.addEventListener("click", function(){ deleteEntry(entry.id); });
+      actions.appendChild(editBtn);
+      actions.appendChild(delBtn);
+
+      row.appendChild(dot);
+      row.appendChild(main);
+      row.appendChild(amounts);
+      row.appendChild(actions);
+      groupWrap.appendChild(row);
+    });
+  }
+
+  function renderBreakdown(){
+    var totals = {};
+    CATEGORIES.forEach(function(c){ totals[c.key] = { eur:0, usd:0, count:0 }; });
+    state.entries.forEach(function(e){
+      var t = totals[e.category] || totals.other;
+      if(e.eur != null) t.eur += e.eur;
+      if(e.usd != null) t.usd += e.usd;
+      t.count += 1;
+    });
+    var rows = CATEGORIES.map(function(c){ return { cat:c, t:totals[c.key] }; })
+      .filter(function(r){ return r.t.count > 0; })
+      .sort(function(a,b){ return (b.t.eur || b.t.usd) - (a.t.eur || a.t.usd); });
+
+    el.categoryBreakdown.innerHTML = "";
+    if(rows.length === 0){
+      var p = document.createElement("p");
+      p.className = "tagline";
+      p.textContent = "Zatiaľ nie je čo zhrnúť.";
+      el.categoryBreakdown.appendChild(p);
+      return;
+    }
+    var maxVal = Math.max.apply(null, rows.map(function(r){ return r.t.eur || r.t.usd; }));
+    rows.forEach(function(r){
+      var wrap = document.createElement("div");
+      wrap.className = "cat-row";
+      var top = document.createElement("div");
+      top.className = "cat-row-top";
+      var dot = document.createElement("span"); dot.className = "cat-dot"; dot.style.background = catColor(r.cat.key);
+      var name = document.createElement("span"); name.className = "cat-name"; name.textContent = r.cat.label;
+      var count = document.createElement("span"); count.className = "cat-count"; count.textContent = r.t.count + "×";
+      var amt = document.createElement("span"); amt.className = "cat-amt";
+      amt.textContent = r.t.eur ? fmtEUR(r.t.eur) : fmtUSD(r.t.usd);
+      top.appendChild(dot); top.appendChild(name); top.appendChild(count); top.appendChild(amt);
+
+      var track = document.createElement("div"); track.className = "cat-bar-track";
+      var fill = document.createElement("div"); fill.className = "cat-bar-fill";
+      var val = r.t.eur || r.t.usd;
+      var pct = maxVal > 0 ? Math.max(4, Math.round((val / maxVal) * 100)) : 0;
+      fill.style.width = pct + "%";
+      fill.style.background = catColor(r.cat.key);
+      track.appendChild(fill);
+
+      wrap.appendChild(top);
+      wrap.appendChild(track);
+      el.categoryBreakdown.appendChild(wrap);
+    });
+  }
+
+  function renderPayers(stats){
+    el.payerRows.innerHTML = "";
+    ["me","mom"].forEach(function(key){
+      var row = document.createElement("div");
+      row.className = "payer-row";
+      var av = document.createElement("span");
+      av.className = "mini-avatar " + key;
+      av.style.width = "22px"; av.style.height = "22px"; av.style.fontSize = "10.5px";
+      av.textContent = initials(getName(key));
+      var name = document.createElement("span");
+      name.className = "name";
+      name.textContent = getName(key);
+      var amounts = document.createElement("span");
+      amounts.className = "amounts";
+      var eurLine = document.createElement("span"); eurLine.textContent = fmtEUR(stats.paidEur[key]);
+      var usdLine = document.createElement("span"); usdLine.className = "u"; usdLine.textContent = fmtUSD(stats.paidUsd[key]);
+      amounts.appendChild(eurLine); amounts.appendChild(usdLine);
+      row.appendChild(av); row.appendChild(name); row.appendChild(amounts);
+      el.payerRows.appendChild(row);
+    });
+  }
+
+  function computeDailyTotals(){
+    var byDate = {};
+    state.entries.forEach(function(e){
+      if(!byDate[e.date]) byDate[e.date] = { date:e.date, eur:0, usd:0, count:0 };
+      var d = byDate[e.date];
+      if(e.eur != null) d.eur += e.eur;
+      if(e.usd != null) d.usd += e.usd;
+      d.count += 1;
+    });
+    return Object.keys(byDate).sort().map(function(k){ return byDate[k]; });
+  }
+
+  function renderQuickStats(stats, dailyTotals){
+    var dates = state.entries.map(function(e){ return e.date; }).sort();
+    var spanDays = 1;
+    if(dates.length){
+      try{
+        var min = parseLocalDate(dates[0]), max = parseLocalDate(dates[dates.length-1]);
+        spanDays = Math.max(1, Math.round((max - min) / 86400000) + 1);
+      }catch(e){}
+    }
+    el.avgPerDay.textContent = fmtEUR(stats.totalEur / spanDays);
+    el.avgPerDaySub.textContent = fmtUSD(stats.totalUsd / spanDays) + " · " + spanDays + (spanDays === 1 ? " deň" : (spanDays < 5 ? " dni" : " dní"));
+
+    if(dailyTotals.length === 0){
+      el.maxDayValue.textContent = "—";
+      el.maxDayLabel.textContent = "Zatiaľ žiadne dáta";
+      return;
+    }
+    var maxDay = dailyTotals.slice().sort(function(a,b){ return b.eur - a.eur; })[0];
+    el.maxDayValue.textContent = fmtEUR(maxDay.eur);
+    try{ el.maxDayLabel.textContent = dayFmt.format(parseLocalDate(maxDay.date)); }
+    catch(e){ el.maxDayLabel.textContent = maxDay.date; }
+  }
+
+  function renderDailyChart(dailyTotals){
+    el.dayChart.innerHTML = "";
+    el.dailyEmpty.classList.toggle("show", dailyTotals.length === 0);
+    if(dailyTotals.length === 0){ el.dayTable.innerHTML = ""; return; }
+
+    var maxEur = Math.max.apply(null, dailyTotals.map(function(d){ return d.eur; }));
+    var maxIdx = dailyTotals.reduce(function(bi,d,i,arr){ return d.eur > arr[bi].eur ? i : bi; }, 0);
+
+    dailyTotals.forEach(function(d, i){
+      var col = document.createElement("div");
+      col.className = "day-col";
+
+      if(i === maxIdx && d.eur > 0){
+        var vLabel = document.createElement("span");
+        vLabel.className = "day-value-label";
+        vLabel.textContent = fmtEUR(d.eur);
+        col.appendChild(vLabel);
+      }
+
+      var tip = document.createElement("div");
+      tip.className = "day-tooltip";
+      var tipDate = document.createElement("div");
+      try{ tipDate.textContent = dayFmt.format(parseLocalDate(d.date)); }catch(e){ tipDate.textContent = d.date; }
+      var tipEur = document.createElement("div");
+      var strongEur = document.createElement("strong"); strongEur.textContent = fmtEUR(d.eur);
+      tipEur.appendChild(strongEur);
+      var tipUsd = document.createElement("div"); tipUsd.textContent = fmtUSD(d.usd);
+      var tipCount = document.createElement("div"); tipCount.textContent = d.count + (d.count === 1 ? " položka" : (d.count < 5 ? " položky" : " položiek"));
+      tip.appendChild(tipDate); tip.appendChild(tipEur); tip.appendChild(tipUsd); tip.appendChild(tipCount);
+
+      var bar = document.createElement("button");
+      bar.type = "button";
+      bar.className = "day-bar-btn";
+      var pct = maxEur > 0 ? Math.max(3, Math.round((d.eur / maxEur) * 100)) : 3;
+      bar.style.height = pct + "%";
+      bar.setAttribute("aria-label", (function(){ try{ return dayFmt.format(parseLocalDate(d.date)); }catch(e){ return d.date; } })() + ": " + fmtEUR(d.eur));
+      bar.appendChild(tip);
+
+      var label = document.createElement("span");
+      label.className = "day-bar-label";
+      try{ label.textContent = dayFmtShort.format(parseLocalDate(d.date)); }catch(e){ label.textContent = d.date; }
+
+      col.appendChild(bar);
+      col.appendChild(label);
+      el.dayChart.appendChild(col);
+    });
+
+    renderDayTable(dailyTotals);
+  }
+
+  function renderDayTable(dailyTotals){
+    el.dayTable.innerHTML = "";
+    dailyTotals.slice().reverse().forEach(function(d){
+      var row = document.createElement("div");
+      row.className = "day-table-row";
+      var dateEl = document.createElement("span");
+      dateEl.className = "dtr-date";
+      try{ dateEl.textContent = dayFmt.format(parseLocalDate(d.date)); }catch(e){ dateEl.textContent = d.date; }
+      var countEl = document.createElement("span");
+      countEl.className = "dtr-count";
+      countEl.textContent = d.count + "×";
+      var amounts = document.createElement("span");
+      amounts.className = "dtr-amounts";
+      var e1 = document.createElement("span"); e1.className = "e"; e1.textContent = fmtEUR(d.eur);
+      var u1 = document.createElement("span"); u1.className = "u"; u1.textContent = fmtUSD(d.usd);
+      amounts.appendChild(e1); amounts.appendChild(u1);
+      row.appendChild(dateEl); row.appendChild(countEl); row.appendChild(amounts);
+      el.dayTable.appendChild(row);
+    });
+  }
+
+  function renderAll(){
+    updateAvatarsUI();
+    updateTagline();
+    var stats = computeStats();
+    var dailyTotals = computeDailyTotals();
+    renderStats(stats);
+    renderList();
+    renderBreakdown();
+    renderPayers(stats);
+    renderQuickStats(stats, dailyTotals);
+    renderDailyChart(dailyTotals);
+  }
+
+  // ---------- init ----------
+  load();
+  el.nameMe.value = getName("me");
+  el.nameMom.value = getName("mom");
+  el.fDate.value = todayStr();
+  el.fCategory.value = "other";
+  renderAll();
+})();
+</script>
