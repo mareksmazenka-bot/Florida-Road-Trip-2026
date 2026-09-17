@@ -215,6 +215,8 @@
   .foot{text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;padding-top:4px;}
   .foot p{margin:0;font-size:12px;color:var(--ink-faint);}
   .btn-text-danger{background:none;border:none;color:var(--danger);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:4px;}
+  .backup-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+  .btn-ghost.small{padding:8px 14px;font-size:12.5px;}
 
   .toast{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));max-width:528px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow);font-size:13.5px;}
   .toast button{background:none;border:none;color:var(--teal-soft);font:inherit;font-weight:700;cursor:pointer;}
@@ -337,7 +339,12 @@
   </section>
 
   <footer class="foot">
-    <p>Dáta sa ukladajú len v tomto prehliadači na tomto zariadení.</p>
+    <p>Dáta sa ukladajú len v tomto prehliadači na tomto zariadení. Pred výmenou telefónu si ich zálohuj.</p>
+    <div class="backup-row">
+      <button type="button" id="exportBtn" class="btn-ghost small">Exportovať zálohu</button>
+      <button type="button" id="importBtn" class="btn-ghost small">Importovať zálohu</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
     <button type="button" id="resetBtn" class="btn-text-danger">Vymazať všetky dáta</button>
   </footer>
 </div>
@@ -472,6 +479,9 @@
     dailyEmpty: document.getElementById("dailyEmpty"),
     dayTable: document.getElementById("dayTable"),
     resetBtn: document.getElementById("resetBtn"),
+    exportBtn: document.getElementById("exportBtn"),
+    importBtn: document.getElementById("importBtn"),
+    importFile: document.getElementById("importFile"),
     toast: document.getElementById("toast"),
     toastMsg: document.getElementById("toastMsg"),
     toastUndo: document.getElementById("toastUndo")
@@ -633,6 +643,103 @@
   }
   el.tabTotalBtn.addEventListener("click", function(){ setReportTab("total"); });
   el.tabDailyBtn.addEventListener("click", function(){ setReportTab("daily"); });
+
+  // ---------- backup: export / import ----------
+  function buildBackupPayload(){
+    return JSON.stringify({
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      names: state.names,
+      entries: state.entries
+    }, null, 2);
+  }
+
+  async function exportData(){
+    var payload = buildBackupPayload();
+    var filename = "florida-vydavky-" + todayStr() + ".json";
+    var handled = false;
+
+    if(window.claude && typeof window.claude.use === "function"){
+      try{
+        var downloads = await window.claude.use("downloads");
+        if(downloads){
+          await downloads.save({ filename: filename, data: payload });
+          handled = true;
+          showToast("Záloha uložená");
+        }
+      }catch(e){ /* viewer declined or unavailable — fall back below */ }
+    }
+
+    if(!handled){
+      try{
+        var blob = new Blob([payload], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+        showToast("Záloha stiahnutá");
+      }catch(e){
+        showToast("Export sa nepodarilo vytvoriť");
+      }
+    }
+  }
+
+  function sanitizeImportedEntry(e){
+    if(!e || typeof e !== "object") return null;
+    var text = typeof e.text === "string" ? e.text.trim() : "";
+    if(!text) return null;
+    var eur = (typeof e.eur === "number" && !isNaN(e.eur) && e.eur >= 0) ? e.eur : null;
+    var usd = (typeof e.usd === "number" && !isNaN(e.usd) && e.usd >= 0) ? e.usd : null;
+    if(eur == null && usd == null) return null;
+    var date = (typeof e.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(e.date)) ? e.date : todayStr();
+    var payer = e.payer === "mom" ? "mom" : "me";
+    var forWhom = (e.for === "mom" || e.for === "both") ? e.for : "me";
+    var category = CAT_BY_KEY[e.category] ? e.category : "other";
+    var id = (typeof e.id === "string" && e.id) ? e.id : (Date.now().toString(36) + Math.random().toString(36).slice(2,7));
+    return { id:id, text:text, eur:eur, usd:usd, date:date, payer:payer, for:forWhom, category:category };
+  }
+
+  function importBackupPayload(parsed){
+    if(!parsed || typeof parsed !== "object") throw new Error("invalid");
+    var incoming = Array.isArray(parsed.entries) ? parsed.entries.map(sanitizeImportedEntry).filter(Boolean) : [];
+    var byId = {};
+    state.entries.forEach(function(e){ byId[e.id] = e; });
+    incoming.forEach(function(e){ byId[e.id] = e; });
+    state.entries = Object.keys(byId).map(function(k){ return byId[k]; });
+
+    if(parsed.names && typeof parsed.names === "object"){
+      if(typeof parsed.names.me === "string" && parsed.names.me.trim()) state.names.me = parsed.names.me.trim();
+      if(typeof parsed.names.mom === "string" && parsed.names.mom.trim()) state.names.mom = parsed.names.mom.trim();
+      el.nameMe.value = getName("me");
+      el.nameMom.value = getName("mom");
+    }
+    save();
+    renderAll();
+    return incoming.length;
+  }
+
+  el.exportBtn.addEventListener("click", function(){ exportData(); });
+  el.importBtn.addEventListener("click", function(){ el.importFile.click(); });
+  el.importFile.addEventListener("change", function(){
+    var file = el.importFile.files && el.importFile.files[0];
+    el.importFile.value = "";
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var parsed = JSON.parse(String(reader.result));
+        var count = importBackupPayload(parsed);
+        showToast("Naimportované: " + count + (count === 1 ? " položka" : (count < 5 ? " položky" : " položiek")));
+      }catch(e){
+        showToast("Súbor sa nepodarilo prečítať — skontroluj, či je to platná záloha");
+      }
+    };
+    reader.onerror = function(){ showToast("Súbor sa nepodarilo prečítať"); };
+    reader.readAsText(file);
+  });
 
   el.resetBtn.addEventListener("click", (function(){
     var armed = false;
